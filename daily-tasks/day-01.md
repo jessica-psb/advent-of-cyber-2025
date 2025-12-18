@@ -1,5 +1,7 @@
 # Day 1 [Linux CLI - Shells Bells]
 
+[Room link]([url](https://tryhackme.com/adventofcyber25))
+
 ## Objectives
 - Investigate tbfc-web01 Linux server 
 - Identify any suspicious activity related to McSkidy’s disappearance
@@ -14,9 +16,9 @@ cat README.txt
 Inside the current directory, I identified a folder named Guides. Listing its contents, including hidden files, revealed a file called .guide.txt. 
 Accessing this file led to the discovery of the first flag for the task. 
 ``` 
-cd Guides
-ls -la
-cat .guide.txt
+1 cd Guides
+2 ls -la
+3 cat .guide.txt
 ```
 <img width="718" height="507" alt="image" src="https://github.com/user-attachments/assets/05fb19e2-85d0-40d8-b6d8-cfc5698e64d5" />
 
@@ -49,8 +51,8 @@ The script copy the wishlist.txt content to /tmp/dump.txt, deletes the original 
 
 I escalated privileges to the root account and reviewed the command history to identify any actions performed after the compromise.
 ```
-sudo su 
-history
+1 sudo su 
+2 history
 ```
 <img width="711" height="292" alt="image" src="https://github.com/user-attachments/assets/45ce8cd2-d078-4285-90a4-80f087c9f856" />
 
@@ -80,6 +82,13 @@ cat /etc/hosts - Map internal network infrastructure for lateral movement
 
 ## Side Quest
 
+I accessed the hidden note in Documents directory
+```
+1 cd /home/mcskidy/Documents/
+2 ls -la
+3 cat read-me-please.txt
+```
+<img width="567" height="764" alt="image" src="https://github.com/user-attachments/assets/07afe5c3-bec7-4d66-a30f-542597723e8a" />
 
 
 
